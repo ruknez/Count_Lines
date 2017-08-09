@@ -1,22 +1,22 @@
-
 package main
+
 import (
- "fmt"
- "bufio"
- "os"
- )
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
 
-	arguments := os.Args [0:]
-	if len (arguments) < 2 {
-		fmt.Printf ("ERROR, no file \n")
+	arguments := os.Args[0:]
+	if len(arguments) < 2 {
+		fmt.Printf("ERROR, no file \n")
 		return
 	}
 
-	file, file_err := os.Open(arguments [1])
+	file, file_err := os.Open(arguments[1])
 	if file_err != nil {
-		fmt.Println ("No such file \n")
+		fmt.Println("Can`t open file:", file_err)
 		return
 	}
 
@@ -24,16 +24,14 @@ func main() {
 	var counter uint64 = 0
 
 	for {
-		read_line, err := f.ReadString('\n')
-	//	fmt.Print(read_line)
+		_, err := f.ReadString('\n')
 		counter++
 		if err != nil {
 			counter--
-			read_line = "not used"
 			break
 		}
 	}
 
 	file.Close()
-	fmt.Println ("count of string = ", counter, " ",(arguments [1]))
+	fmt.Println("count of string = ", counter, " ", (arguments[1]))
 }
